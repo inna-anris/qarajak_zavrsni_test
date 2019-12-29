@@ -45,6 +45,27 @@ namespace ZavrsniTestIvana
             this.DoWait(3);
         }
 
+        [Test]
+        public void Zadatak2()
+        {
+            this.NavigateTo("http://test5.qa.rs/");
+            IWebElement login = this.FindElement(By.XPath("//a[@href='/login']"));
+            login.Click();
+            this.DoWait(1);
+            IWebElement korisnicko = this.FindElement(By.Name("username"));
+            this.SendKeys("anris", false, korisnicko);
+            this.DoWait(1);
+            IWebElement lozinka = this.FindElement(By.Name("password"));
+            this.SendKeys("12345", false, lozinka);
+            this.DoWait(1);
+            IWebElement uloguj = this.FindElement(By.Name("login"));
+            uloguj.Click();
+            this.DoWait(1);
+            IWebElement uspeh = this.FindElement(By.XPath("//h2[contains(text(),'Welcome back, Ivana')]"));
+            Assert.True(uspeh.Displayed);
+            this.DoWait(3);
+        }
+
         [SetUp]
         public void SetUpTests()
         {
